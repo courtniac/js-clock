@@ -66,23 +66,22 @@
     }
 
     .hour-hand {
-      transform: rotate(90deg);
       background: red;
+      /* transform: rotate(90deg); */
     }
 
     .min-hand {
-      transform: rotate(90deg);
       background: yellow;
     }
 
     .second-hand {
-      transform: rotate(90deg);
       background: blue;
     }
 
   </style>
 
   <script>
+  function updateClock() {
     var d = new Date()
     var currHour = d.getHours();
     var currMinute = d.getMinutes();
@@ -91,14 +90,16 @@
     if (currHour > 12) {
       currHour -= 12;
     }
-    var rotateHour = currHour * 30;
-    var rotateMinute = currMinute * 6;
-    var rotateSecond = currSecond * 6;
+    var rotateHour = (currHour * 30) + 90;
+    var rotateMinute = (currMinute * 6) + 90;
+    var rotateSecond = (currSecond * 6) + 90;
 
-    document.getElementsByClassName("hour-hand")[0].style.transform = "rotate("+ rotateHour + "deg)";
+    document.getElementsByClassName("hour-hand")[0].style.transform = "rotate(" + rotateHour +"deg)";
     document.getElementsByClassName("min-hand")[0].style.transform = "rotate("+ rotateMinute + "deg)";
     document.getElementsByClassName("second-hand")[0].style.transform = "rotate("+ rotateSecond + "deg)";
+  }
 
+  setInterval(updateClock, 1000);
 
   </script>
 </body>
